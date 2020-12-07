@@ -11,3 +11,19 @@ React & Node Full ECommerce
 5. MongoDB: Mongoose, Aggregation
 6. Development: ESLint, Babel, Git, Github,
 7. Deployment: Heroku
+
+Part 01- Website Template (HTML, CSS)
+Part 02- Products List (Grid, Flexbox)
+Part 03- Create Sidebar (JavaScript)
+Part 04- Create React App (React)
+Part 05- Render Products (JSX)
+Part 06- Product Details (React Router)
+Part 07- Create Node Server (Node.js)
+Part 08- Fetch Server Data (React Hooks)
+Part 09- Manage State With Redux (Redux)
+Part 10- Add Redux To Details (Advanced)
+Part 11- Shopping Cart Screen (Advanced)
+Part 12- Connect MongoDB (Mongoose)
+Part 13- Sign In User (JWT Authentication)
+Part 14- Manage Products (React Modal)
+Part 15- Checkout Wizard (React Wizard)
