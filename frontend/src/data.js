@@ -1,49 +1,63 @@
 export default {
     products: [
-        {
-            name: 'Slim Shirt',
-            image: '/images/d1.jpg',
-            category: 'Shirts',
-            price: 60,
-            brand: 'Nike',
-            rating: 4.5,
-            numOfReviews: 10
-        },
-        {
-            name: 'Fit Shirt',
-            image: '/images/d1.jpg',
-            category: 'Shirts',
-            price: 80,
-            brand: 'Nike',
-            rating: 4.0,
-            numOfReviews: 20
-        },
-        {
-            name: 'Pants',
-            image: '/images/d1.jpg',
-            category: 'PAnts',
-            price: 100,
-            brand: 'Nike',
-            rating: 3.5,
-            numOfReviews: 30
-        },
-        {
-            name: 'Slim Shirt',
-            image: '/images/d1.jpg',
-            category: 'Shirts',
-            price: 60,
-            brand: 'Nike',
-            rating: 4.5,
-            numOfReviews: 10
-        },
-        {
-            name: 'Slim Shirt',
-            image: '/images/d1.jpg',
-            category: 'Shirts',
-            price: 60,
-            brand: 'Nike',
-            rating: 4.5,
-            numOfReviews: 10
-        }
+      {
+        _id: '1',
+        name: 'Slim Shirt',
+        category: 'Shirts',
+        image: '/images/d1.jpg',
+        price: 60,
+        brand: ' Nike',
+        rating: 4.5,
+        numReviews: 10
+      },
+      {
+        _id: '2',
+        name: 'Fit Shirt',
+        category: 'Shirts',
+        image: '/images/d1.jpg',
+        price: 50,
+        brand: ' Nike',
+        rating: 4.2,
+        numReviews: 5
+      },
+      {
+        _id: '3',
+        name: 'Best Pants',
+        category: 'Pants',
+        image: '/images/d1.jpg',
+        price: 70,
+        brand: ' Nike',
+        rating: 4.5,
+        numReviews: 8
+      }, {
+        _id: '4',
+        name: 'Best Pants',
+        category: 'Pants',
+        image: '/images/d1.jpg',
+        price: 70,
+        brand: ' Nike',
+        rating: 4.5,
+        numReviews: 8
+      },
+      {
+        _id: '5',
+        name: 'Best Pants',
+        category: 'Pants',
+        image: '/images/d1.jpg',
+        price: 70,
+        brand: ' Nike',
+        rating: 4.5,
+        numReviews: 8
+      },
+      {
+        _id: '4',
+        name: 'Best Pants',
+        category: 'Pants',
+        image: '/images/d1.jpg',
+        price: 70,
+        brand: ' Nike',
+        rating: 4.5,
+        numReviews: 8
+      }
     ]
-}
+  }
