@@ -20,57 +20,64 @@ function ProductScreen(props) {
         props.history.push(`/cart/${props.match.params.id}?qty=${qty}`)
     }
 
-    return <div>
-        <div className="back-to-result">
-            <Link to="/">Back to result</Link>
-        </div>
-        {loading ? <div>Loading...</div> : 
-         error ? <div>{error}</div> : (
-            <div className="details">
-            <div className="deatils-image">
-                <img src={product.image} alt="product" />
+    return (
+        <div>
+            <div className="back-to-result">
+                <Link to="/">Back to result</Link>
             </div>
-            <div className="details-info">
-                <ul>
-                    <li>
-                        <h4>{product.name}</h4>
-                    </li>
-                    <li>
-                        {product.rating} Stars ({product.numReviews} Reviews)
-                    </li>
-                    <li>
-                        Price: <b>${product.price}</b>
-                    </li>
-                    <li>
-                        Description:
-                        <div>
-                            {product.description}
-                        </div>
-                    </li>
-                </ul>
+            {loading ? (
+                <div>Loading...</div>
+            ) : error ? (
+                <div>{error}</div>
+            ) : (
+              <>
+                <div className="details">
+                <div className="details-image">
+                    <img src={product.image} alt="product" />
+                </div>
+                <div className="details-info">
+                    <ul>
+                        <li>
+                            <h4>{product.name}</h4>
+                        </li>
+                        <li>
+                            {product.rating} Stars ({product.numReviews} Reviews)
+                        </li>
+                        <li>
+                            Price: <b>${product.price}</b>
+                        </li>
+                        <li>
+                            Description:
+                            <div>
+                                {product.description}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div className="details-action">
+                    <ul>
+                        <li>
+                            Price: ${product.price}
+                        </li>
+                        <li>
+                            Status: { product.countInStock > 0 ? <div>In stock</div> : <div>Unavailable</div> }
+                        </li>
+                        <li>
+                            Qty: <select value={qty} onChange={(e) => { setQty(e.target.value)} }>
+                                {[...Array(product.countInStock).keys()].map(x=> <option key={x+1} value={x+1}>{x+1}</option>)}
+                            </select>
+                        </li>
+                        <li>
+                            {product.countInStock > 0 ? <button onClick={handleAddToCart} className="button primary">Add to Cart</button> : <div>Out of stock</div>}
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div className="details-action">
-                <ul>
-                    <li>
-                        Price: {product.price}
-                    </li>
-                    <li>
-                        Status: { product.countInStock > 0 ? <div>In stock</div> : <div>Unavailable</div> }
-                    </li>
-                    <li>
-                        Qty: <select value={qty} onChange={(e) => { setQty(e.target.value)} }>
-                            {[...Array(product.countInStock).keys()].map(x=> <option key={x+1} value={x+1}>{x+1}</option>)}
-                        </select>
-                    </li>
-                    <li>
-                        {product.countInStock > 0 ? <button onClick={handleAddToCart} className="button primary">Add to Cart</button> : <div>Out of stock</div>}
-                    </li>
-                </ul>
-            </div>
-        </div>
-         )
+            </>
+            )
         }
     </div>
+    )
 }
 
 export default ProductScreen
