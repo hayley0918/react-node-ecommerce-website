@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { listProducts, saveProduct } from '../actions/productActions'
 
 function ProductsScreen(props) {
-
+    const [modalVisible, setModalVisible] = useState(false)
+    const [id, setId] = useState('')
+    const [rating, setRating] = useState('')
+    const [numReviews, setNumReviews] = useState('')
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [image, setImage] = useState('')
@@ -25,17 +28,29 @@ function ProductsScreen(props) {
         }
     }, [])
 
+    const openModal = (product) => {
+        setModalVisible(true)
+        setId(product._id)
+        setName(product.name)
+        setPrice(product.price)
+        setDescription(product.description)
+        setImage(product.image)
+        setBrand(product.brand)
+        setCategory(product.category)
+        setCountInStock(product.countInStock)
+    }
+
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(saveProduct({ name, price, image, brand, category, description, countInStock }))
+        dispatch(saveProduct({ _id: id, name, price, image, brand, category, description, countInStock }))
     }
 
     return <div className="content content-margined">
         <div className="product-header">
             <h3>Products</h3>
-            <button>Create Product</button>
+            <button onClick={() => openModal({})}>Create Product</button>
         </div>
-        <div className="form">
+        {modalVisible ? <div className="form">
             <form onSubmit={submitHandler}>
                 <ul className="form-container">
                     <li>
@@ -49,51 +64,53 @@ function ProductsScreen(props) {
                         <label htmlFor="name">
                             Name
                         </label>
-                        <input type="text" name="name" id="name" onChange={(e) => setName(e.target.value)}></input>
+                        <input type="text" name="name" value={name} id="name" onChange={(e) => setName(e.target.value)}></input>
                     </li>
                     <li>
                         <label htmlFor="price">
                             Price
                         </label>
-                        <input type="text" id="price" name="price" onChange={(e) => setPrice(e.target.value)}></input>
+                        <input type="text" id="price" value={price} name="price" onChange={(e) => setPrice(e.target.value)}></input>
                     </li>
                     <li>
                         <label htmlFor="image">
                             Image
                         </label>
-                        <input type="text" name="image" id="image" onChange={(e) => setImage(e.target.value)}></input>
+                        <input type="text" name="image" value={image} id="image" onChange={(e) => setImage(e.target.value)}></input>
                     </li>
                     <li>
                         <label htmlFor="brand">
                             Brand
                         </label>
-                        <input type="text" name="brand" id="brand" onChange={(e) => setBrand(e.target.value)}></input>
+                        <input type="text" name="brand" value={brand} id="brand" onChange={(e) => setBrand(e.target.value)}></input>
                     </li>
                     <li>
                         <label htmlFor="countInStock">
                             Count In Stock
                         </label>
-                        <input type="text" name="countInStock" id="countInStock" onChange={(e) => setCountInStock(e.target.value)}></input>
+                        <input type="text" name="countInStock" value={countInStock} id="countInStock" onChange={(e) => setCountInStock(e.target.value)}></input>
                     </li>
                     <li>
                         <label htmlFor="category">
                             Category
                         </label>
-                        <input type="text" name="category" id="category" onChange={(e) => setCategory(e.target.value)}></input>
+                        <input type="text" name="category" value={category} id="category" onChange={(e) => setCategory(e.target.value)}></input>
                     </li>
                     <li>
                         <label htmlFor="description">
                             Description
                         </label>
-                        <textarea name="description" id="description" onChange={(e) => setDescription(e.target.value)}></textarea>
+                        <textarea name="description" value={description} id="description" onChange={(e) => setDescription(e.target.value)}></textarea>
                     </li>
                     <li>
-                        <button type="submit" className="button primary">Create</button>
+                        <button type="submit" className="button primary">{id ? "Update" : "Create"}</button>
+                    </li>
+                    <li>
+                        <button type="submit" onClick={()=> setModalVisible(false)} className="button secondary">Back</button>
                     </li>
                 </ul>
             </form>
-        </div>
-        <div className="product-list">
+        </div> : <div className="product-list">
             <table>
                 <thead>
                     <tr>
@@ -106,16 +123,21 @@ function ProductsScreen(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {products? products.map(product=><tr>
+                    {products.map(product=><tr>
                         <td>{product._id}</td>
                         <td>{product.name}</td>
                         <td>{product.price}</td>
                         <td>{product.category}</td>
                         <td>{product.brand}</td>
-                    </tr>): console.log('no data')}
+                        <td>
+                            <button>Delete</button>
+                            <button onClick={()=>openModal(product)}>Edit</button>
+                        </td>
+                    </tr>)}
                 </tbody>
             </table>
         </div>
+        }
     </div>
 }
 

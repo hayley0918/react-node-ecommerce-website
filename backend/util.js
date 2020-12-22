@@ -16,7 +16,7 @@ const isAuth = (req, res, next) => {
     const token = req.headers.authorization
     if(token){
         const onlyToken = token.slice(7, token.length)
-        jwt.verify(onlyToken, cofig.JWT_SECRET, (err, decode) => {
+        jwt.verify(onlyToken, config.JWT_SECRET, (err, decode) => {
             if(err) {
                 return res.status(401).send({ msg: "Invalid Token" })
             }

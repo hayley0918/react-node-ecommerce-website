@@ -24,7 +24,6 @@ app.use("/api/users", userRoute)
 app.use("/api/products", productRoute)
 
 // app.get("/api/products", (req, res) => {
-
 //     res.send(data.products)
 // })
 
